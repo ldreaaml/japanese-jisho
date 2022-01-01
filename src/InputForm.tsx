@@ -1,12 +1,8 @@
-import {
-  Box,
-  IconButton,
-  InputAdornment,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, InputAdornment, TextField, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import React, { useState } from "react";
+import { SearchResult } from "./SearchResult";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 interface Props {}
 
@@ -15,7 +11,7 @@ export const InputForm = (props: Props) => {
     setInput(e.target.value);
   };
 
-  const [userInput, setInput] = useState();
+  const [userInput, setInput] = useState<string>("");
 
   return (
     <>
@@ -39,6 +35,9 @@ export const InputForm = (props: Props) => {
           }}
         />
         <Typography>{userInput}</Typography>
+
+        <SearchResult word={userInput} />
+        <ReactQueryDevtools />
       </Box>
     </>
   );
