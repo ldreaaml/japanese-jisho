@@ -36,7 +36,7 @@ export const InputForm = (props: Props) => {
         />
         <Typography>{userInput}</Typography>
 
-        <SearchResult word={userInput} />
+        <SearchResult keyword={userInput} />
         <ReactQueryDevtools />
       </Box>
     </>
