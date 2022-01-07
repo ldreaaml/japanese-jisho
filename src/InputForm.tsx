@@ -11,7 +11,7 @@ export const InputForm = (props: Props) => {
     setInput(e.target.value);
   };
 
-  const [userInput, setInput] = useState<string>("");
+  const [userInput, setInput] = useState<string>("okonomiyaki");
 
   return (
     <>

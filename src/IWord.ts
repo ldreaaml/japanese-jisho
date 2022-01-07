@@ -1,7 +1,7 @@
-export interface KeywordList{
-    [index:number]:Keyword;
+export interface WordList{
+    [index:number]:Word;
 }
-export interface Keyword {
+export interface Word {
     slug:        string;
     is_common:   boolean;
     tags:        any[];

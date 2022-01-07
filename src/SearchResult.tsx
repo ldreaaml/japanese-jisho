@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { KeywordList } from "./IKeyword";
+import { WordList } from "./IWord";
+import { WordBlock } from "./WordBlock";
 
 interface Props {
   keyword: string;
 }
 
 const formatJSON = (result: any) => {
-  const words: KeywordList = Object.assign({}, result.data);
+  const words: WordList = Object.assign({}, result.data);
 
   const results = [];
   for (const i in words) {
@@ -20,9 +21,11 @@ const formatJSON = (result: any) => {
         }
       </div>
     );
-    console.log(words[i]);
+    // console.log(words[i]);
   }
-
+  if (words[0]) {
+    results.push(<WordBlock word={words[0]} />);
+  }
   return (
     <div>
       <p>Found: {result.data ? Object.keys(result.data).length : 0}</p>
