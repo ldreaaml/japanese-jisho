@@ -14,17 +14,17 @@ const formatJSON = (result: any) => {
   for (const i in words) {
     results.push(
       <div>
-        {i} :{" "}
+        {/* {i} :{" "}
         {
           JSON.stringify(words[i])
-          // JSON.stringify(words[i], null, 2)
-        }
+        } */}
       </div>
     );
-    // console.log(words[i]);
   }
   if (words[0]) {
-    results.push(<WordBlock word={words[0]} />);
+    for (const i in words) {
+      results.push(<WordBlock word={words[i]} />);
+    }
   }
   return (
     <div>

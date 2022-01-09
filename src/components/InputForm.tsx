@@ -1,8 +1,8 @@
 import { Box, InputAdornment, TextField, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import React, { useState } from "react";
-import { SearchResult } from "./SearchResult";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { SearchResult } from "./SearchResult";
 
 interface Props {}
 
@@ -11,7 +11,7 @@ export const InputForm = (props: Props) => {
     setInput(e.target.value);
   };
 
-  const [userInput, setInput] = useState<string>("okonomiyaki");
+  const [userInput, setInput] = useState<string>("りゅうしゅつ");
 
   return (
     <>
@@ -25,6 +25,7 @@ export const InputForm = (props: Props) => {
           fullWidth
           label="Search..."
           id="txtField"
+          value={userInput}
           onChange={handleChange}
           InputProps={{
             endAdornment: (

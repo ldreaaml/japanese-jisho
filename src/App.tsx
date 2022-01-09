@@ -2,7 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { Box, Container, CssBaseline, Typography } from "@mui/material";
-import { InputForm } from "./InputForm";
+import { InputForm } from "./components/InputForm";
 import { QueryClient, QueryClientProvider, useQueryClient } from "react-query";
 
 const queryClient = new QueryClient();
