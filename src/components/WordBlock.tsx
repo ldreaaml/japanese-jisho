@@ -1,7 +1,6 @@
-import { Card, CardContent, Typography, Box } from "@mui/material";
+import { Card, CardContent, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useAtom } from "jotai";
-import { useState } from "react";
 import { kanjiAtom } from "../atom/kanjiAtom";
 import { Word } from "./IWord";
 
@@ -11,13 +10,10 @@ interface Props {
 
 const useStyles = makeStyles({
   root: {
-    // background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
     border: 0,
     borderRadius: 3,
     boxShadow: "0 3px 5px 2px #e3e3e3",
-    // color: "white",
     width: 500,
-    // padding: "0 30px",
     marginBottom: 20,
   },
   text: {
@@ -49,25 +45,21 @@ export const WordBlock = ({ word }: Props) => {
   //english
   const eng = (list: string[]) => {};
 
-  const [wordHover, setWordHover] = useState([]);
-
   return (
     <>
       <Card className={classes.root} sx={{ minWidth: 275 }}>
         <CardContent>
-          {/* <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            Word of the Day
-          </Typography> */}
           <Typography variant="h5" component="div" onMouseOver={mouseHover}>
             {slug()}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            {word.japanese[0].reading}
+            {word.japanese
+              .map((j) => j.reading)
+              .filter((value, index, self) => self.indexOf(value) === index)
+              .join("  •  ")}
           </Typography>
           <Typography className={classes.text} variant="body2">
             {word.senses[0].english_definitions.join(", ")}
-            {/* <br />
-            {'"..."'} */}
           </Typography>
         </CardContent>
       </Card>

@@ -10,8 +10,3 @@ export interface Kanji {
   unicode: string;
   heisig_en: string;
 }
-
-// export const JSONtoKanji = (result: any) => {
-//   const kanji: Kanji = Object.assign({}, result.data);
-//   return kanji;
-// };

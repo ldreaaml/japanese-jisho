@@ -1,10 +1,7 @@
-import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import { Box, Container, CssBaseline, Typography } from "@mui/material";
 import { InputForm } from "./components/InputForm";
-import { QueryClient, QueryClientProvider, useQueryClient } from "react-query";
-import { KanjiDisplay } from "./components/KanjiDisplay";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const queryClient = new QueryClient();
 
@@ -24,12 +21,9 @@ function App() {
             <Typography variant="h2" component="h1" gutterBottom>
               Welcome to Jisho
             </Typography>
-            {/* <Typography variant="h5" component="h2" gutterBottom>
-            {"Japanese dictionary made for fun :D"}
-          </Typography> */}
-            {/* <Typography variant="body1">
-            {"Japanese dictionary made for fun :D"}
-          </Typography> */}
+            {/* <Typography gutterBottom variant="body1">
+              {"Japanese dictionary made using jisho.org api"}
+            </Typography> */}
 
             <InputForm />
           </Container>
