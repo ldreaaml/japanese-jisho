@@ -1,27 +1,13 @@
-import {
-  Card,
-  CardContent,
-  Typography,
-  CardActions,
-  Button,
-  Box,
-} from "@mui/material";
+import { Card, CardContent, Typography, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import React, { useState } from "react";
+import { useAtom } from "jotai";
+import { useState } from "react";
+import { kanjiAtom } from "../atom/kanjiAtom";
 import { Word } from "./IWord";
 
 interface Props {
   word: Word;
 }
-
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-  >
-    •
-  </Box>
-);
 
 const useStyles = makeStyles({
   root: {
@@ -40,8 +26,9 @@ const useStyles = makeStyles({
 });
 
 export const WordBlock = ({ word }: Props) => {
-  console.log(word);
   const classes = useStyles();
+
+  const [, setCurrentWord] = useAtom(kanjiAtom);
 
   const slug = () => {
     return word.slug;
@@ -49,6 +36,7 @@ export const WordBlock = ({ word }: Props) => {
 
   const mouseHover = () => {
     console.log("mouseOver " + slug());
+    setCurrentWord(slug());
   };
 
   //japanese

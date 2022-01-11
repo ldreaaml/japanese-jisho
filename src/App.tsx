@@ -33,9 +33,7 @@ function App() {
 
             <InputForm />
           </Container>
-          <Container>
-            <KanjiDisplay />
-          </Container>
+          <Container></Container>
 
           <Box
             component="footer"

@@ -1,12 +1,12 @@
-import { Grid, Paper } from "@mui/material";
+import { Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import axios from "axios";
+import { useAtom } from "jotai";
+import { useEffect, useState } from "react";
 
-import React, { useEffect, useState } from "react";
+import { kanjiAtom } from "../atom/kanjiAtom";
+import { KanjiBlock } from "./KanjiBlock";
 
-interface Props {
-  //   word: string;
-}
+interface Props {}
 
 const useStyles = makeStyles({
   root: {
@@ -15,40 +15,30 @@ const useStyles = makeStyles({
     borderRadius: 3,
     boxShadow: "0 3px 5px 2px #e3e3e3",
     // color: "white",
-    width: 300,
-    height: 300,
-    float: "right",
+    width: 500,
+    // height: 300,
+    // float: "right",
   },
 });
 
 export const KanjiDisplay = (props: Props) => {
   const classes = useStyles();
-  const word = "留出";
+  const [word] = useAtom(kanjiAtom);
 
+  // console.log(kanji);
   const kanji = word.split("");
-  console.log(kanji);
+  const [test, setTest] = useState<string[]>([]);
 
-  const baseURL =
-    "https://kanjiapi.dev/v1/kanji/" + encodeURIComponent(kanji[0]);
-  const proxyURL = "https://api.allorigins.win/raw?url=" + baseURL;
-
-  const [result, setResult] = useState([]);
-  useEffect(() => {
-    axios
-      .get(proxyURL)
-      .then((response) => {
-        setResult(response.data);
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [proxyURL]);
+  // useEffect(() => {
+  //   setTest(word.split(""));
+  // }, [word]);
 
   return (
     <>
       <Grid container className={classes.root}>
-        <Paper elevation={3}> {JSON.stringify(result)} </Paper>
+        {kanji.map((character) => {
+          return <KanjiBlock kanji={character} />;
+        })}
       </Grid>
     </>
   );

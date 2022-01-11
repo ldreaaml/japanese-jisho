@@ -3,6 +3,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import React, { useState } from "react";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { SearchResult } from "./SearchResult";
+import { kanjiAtom } from "../atom/kanjiAtom";
+import { useAtom } from "jotai";
 
 interface Props {}
 
