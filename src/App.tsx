@@ -4,6 +4,7 @@ import "./App.css";
 import { Box, Container, CssBaseline, Typography } from "@mui/material";
 import { InputForm } from "./components/InputForm";
 import { QueryClient, QueryClientProvider, useQueryClient } from "react-query";
+import { KanjiDisplay } from "./components/KanjiDisplay";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,10 @@ function App() {
 
             <InputForm />
           </Container>
+          <Container>
+            <KanjiDisplay />
+          </Container>
+
           <Box
             component="footer"
             sx={{

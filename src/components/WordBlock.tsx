@@ -7,7 +7,7 @@ import {
   Box,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import React from "react";
+import React, { useState } from "react";
 import { Word } from "./IWord";
 
 interface Props {
@@ -46,6 +46,11 @@ export const WordBlock = ({ word }: Props) => {
   const slug = () => {
     return word.slug;
   };
+
+  const mouseHover = () => {
+    console.log("mouseOver " + slug());
+  };
+
   //japanese
   const jap = (list: string[]) => {
     for (const i in word.senses) {
@@ -56,6 +61,8 @@ export const WordBlock = ({ word }: Props) => {
   //english
   const eng = (list: string[]) => {};
 
+  const [wordHover, setWordHover] = useState([]);
+
   return (
     <>
       <Card className={classes.root} sx={{ minWidth: 275 }}>
@@ -63,7 +70,7 @@ export const WordBlock = ({ word }: Props) => {
           {/* <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             Word of the Day
           </Typography> */}
-          <Typography variant="h5" component="div">
+          <Typography variant="h5" component="div" onMouseOver={mouseHover}>
             {slug()}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { WordList } from "./IWord";
 import { WordBlock } from "./WordBlock";
+import { Typography } from "@mui/material";
 
 interface Props {
   keyword: string;
@@ -51,5 +52,10 @@ export const SearchResult = ({ keyword: word }: Props) => {
       });
   }, [proxyURL]);
 
-  return <div>{formatJSON(result)}</div>;
+  return (
+    <>
+      {/* <Typography>onHover: {wordHover} </Typography> */}
+      <div>{formatJSON(result)}</div>
+    </>
+  );
 };
