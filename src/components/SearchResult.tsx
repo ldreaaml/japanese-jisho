@@ -24,7 +24,6 @@ const formatJSON = (result: any) => {
       <pre>{results}</pre>
     </div>
   );
-  return words;
 };
 
 export const SearchResult = ({ keyword: word }: Props) => {
@@ -33,14 +32,11 @@ export const SearchResult = ({ keyword: word }: Props) => {
   const proxyURL = "https://api.allorigins.win/raw?url=" + baseURL;
 
   const [result, setResult] = useState([]);
-  const [test, setTest] = useState<WordList>();
   useEffect(() => {
     axios
       .get(proxyURL)
       .then((response) => {
         setResult(response.data);
-        const json = formatJSON(result);
-        // setTest(formatJSON(response.data));
       })
       .catch((error) => {
         console.log(error);
@@ -49,7 +45,6 @@ export const SearchResult = ({ keyword: word }: Props) => {
 
   return (
     <>
-      {/* <Typography>onHover: {wordHover} </Typography> */}
       <KanjiDisplay />
       <div>
         {formatJSON(result)}

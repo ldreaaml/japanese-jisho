@@ -1,7 +1,6 @@
-import { Card, CardContent, Typography, Box } from "@mui/material";
+import { Card, CardContent, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useAtom } from "jotai";
-import { useState } from "react";
 import { kanjiAtom } from "../atom/kanjiAtom";
 import { Word } from "./IWord";
 
@@ -11,14 +10,15 @@ interface Props {
 
 const useStyles = makeStyles({
   root: {
-    // background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
     border: 0,
     borderRadius: 3,
     boxShadow: "0 3px 5px 2px #e3e3e3",
-    // color: "white",
     width: 500,
-    // padding: "0 30px",
     marginBottom: 20,
+    transition: "background 1s, color 1s",
+    "&:hover": {
+      boxShadow: "2 3px 5px 2px #545454",
+    },
   },
   text: {
     whiteSpace: "normal",
@@ -35,7 +35,7 @@ export const WordBlock = ({ word }: Props) => {
   };
 
   const mouseHover = () => {
-    console.log("mouseOver " + slug());
+    console.log("mouseEnter " + slug());
     setCurrentWord(slug());
   };
 
@@ -49,25 +49,22 @@ export const WordBlock = ({ word }: Props) => {
   //english
   const eng = (list: string[]) => {};
 
-  const [wordHover, setWordHover] = useState([]);
-
   return (
     <>
-      <Card className={classes.root} sx={{ minWidth: 275 }}>
+      <Card
+        className={classes.root}
+        sx={{ minWidth: 275 }}
+        onMouseEnter={mouseHover}
+      >
         <CardContent>
-          {/* <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            Word of the Day
-          </Typography> */}
-          <Typography variant="h5" component="div" onMouseOver={mouseHover}>
+          <Typography variant="h5" component="div">
             {slug()}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            {word.japanese[0].reading}
+            {word.japanese.map((j) => j.reading).join(" • ")}
           </Typography>
           <Typography className={classes.text} variant="body2">
             {word.senses[0].english_definitions.join(", ")}
-            {/* <br />
-            {'"..."'} */}
           </Typography>
         </CardContent>
       </Card>

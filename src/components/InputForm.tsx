@@ -1,15 +1,17 @@
 import { Box, InputAdornment, TextField, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import React, { useState } from "react";
+import { useState } from "react";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { SearchResult } from "./SearchResult";
-import { kanjiAtom } from "../atom/kanjiAtom";
 import { useAtom } from "jotai";
+import { kanjiAtom } from "../atom/kanjiAtom";
 
 interface Props {}
 
 export const InputForm = (props: Props) => {
+  const [, resetKanji] = useAtom(kanjiAtom); //TODO
   const handleChange = (e: any) => {
+    resetKanji("");
     setInput(e.target.value);
   };
 
