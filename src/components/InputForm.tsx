@@ -1,7 +1,6 @@
 import { Box, InputAdornment, TextField, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
-import { ReactQueryDevtools } from "react-query/devtools";
 import { SearchResult } from "./SearchResult";
 import { useAtom } from "jotai";
 import { kanjiAtom } from "../atom/kanjiAtom";
@@ -42,7 +41,6 @@ export const InputForm = (props: Props) => {
         <Typography>{userInput}</Typography>
 
         <SearchResult keyword={userInput} />
-        <ReactQueryDevtools />
       </Box>
     </>
   );

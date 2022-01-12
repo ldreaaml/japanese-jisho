@@ -16,14 +16,17 @@ const useStyles = makeStyles({
     boxShadow: "0 3px 5px 2px #e3e3e3",
     width: 500,
     whiteSpace: "normal",
+    marginBottom: 10,
   },
 });
 
 export const KanjiBlock = ({ kanji }: Props) => {
   const classes = useStyles();
-  const [_kanji, setTest] = useState<Kanji>();
+
   const baseURL = "https://kanjiapi.dev/v1/kanji/" + encodeURIComponent(kanji);
   const proxyURL = "https://api.allorigins.win/raw?url=" + baseURL;
+
+  const [_kanji, setKanji] = useState<Kanji>();
 
   useEffect(() => {
     console.log("fetching " + kanji);
@@ -31,15 +34,15 @@ export const KanjiBlock = ({ kanji }: Props) => {
     axios
       .get(proxyURL)
       .then((response) => {
-        const foo: Kanji = Object.assign({}, response.data);
-        setTest(foo);
+        const _kanji: Kanji = Object.assign({}, response.data);
+        setKanji(_kanji);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [proxyURL]);
   if (_kanji) {
-    // console.log(_kanji);
+    console.log(_kanji);
     return (
       <>
         <Card className={classes.root} sx={{ minWidth: 275 }}>
@@ -58,14 +61,14 @@ export const KanjiBlock = ({ kanji }: Props) => {
                 variant="subtitle2"
                 color="text.secondary"
               >
-                N{_kanji.jlpt}
+                {_kanji.jlpt ? "N" + _kanji.jlpt : ""}
               </Typography>
             </Grid>
-            <Typography sx={{ mb: 0.7 }} color="text.secondary">
-              {[..._kanji.kun_readings].join("  •  ")}
+            <Typography sx={{ mb: 0.8 }} color="text.secondary">
+              {_kanji.kun_readings.join("  •  ")}
             </Typography>
-            <Typography sx={{ mb: 1.5 }} color="text.secondary">
-              {[..._kanji.on_readings].join("  •  ")}
+            <Typography sx={{ mb: 0.8 }} color="text.secondary">
+              {_kanji.on_readings.join("  •  ")}
             </Typography>
             <Typography variant="body2">
               {_kanji.meanings.join(", ")}

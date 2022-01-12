@@ -8,7 +8,7 @@ interface Props {
   keyword: string;
 }
 
-const formatJSON = (result: any) => {
+const populateList = (result: any) => {
   const words: WordList = Object.assign({}, result.data);
 
   const results = [];
@@ -46,12 +46,7 @@ export const SearchResult = ({ keyword: word }: Props) => {
   return (
     <>
       <KanjiDisplay />
-      <div>
-        {formatJSON(result)}
-        {/* {test.map((word) => {
-          return <WordBlock word={words[i]} />;
-        })} */}
-      </div>
+      <div>{populateList(result)}</div>
     </>
   );
 };

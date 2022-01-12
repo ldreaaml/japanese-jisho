@@ -57,11 +57,14 @@ export const WordBlock = ({ word }: Props) => {
         onMouseEnter={mouseHover}
       >
         <CardContent>
-          <Typography variant="h5" component="div">
+          <Typography variant="h5" component="div" onMouseOver={mouseHover}>
             {slug()}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            {word.japanese.map((j) => j.reading).join(" • ")}
+            {word.japanese
+              .map((j) => j.reading)
+              .filter((value, index, self) => self.indexOf(value) === index)
+              .join("  •  ")}
           </Typography>
           <Typography className={classes.text} variant="body2">
             {word.senses[0].english_definitions.join(", ")}

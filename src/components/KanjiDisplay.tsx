@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import axios from "axios";
 import { useAtom } from "jotai";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 import { kanjiAtom } from "../atom/kanjiAtom";
 import { Kanji } from "./IKanji";
@@ -11,12 +11,7 @@ import { KanjiBlock } from "./KanjiBlock";
 interface Props {}
 
 const useStyles = makeStyles({
-  root: {
-    border: 0,
-    borderRadius: 3,
-    boxShadow: "0 3px 5px 2px #e3e3e3",
-    width: 500,
-  },
+  root: { width: 500 },
 });
 
 const fetchKanji = (kanji: string) => {
