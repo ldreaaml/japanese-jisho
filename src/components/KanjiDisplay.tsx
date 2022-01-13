@@ -11,7 +11,10 @@ import { KanjiBlock } from "./KanjiBlock";
 interface Props {}
 
 const useStyles = makeStyles({
-  root: { width: 500 },
+  root: {
+    width: 400,
+    // position: "fixed",
+  },
 });
 
 const fetchKanji = (kanji: string) => {

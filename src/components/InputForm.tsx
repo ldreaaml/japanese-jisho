@@ -3,18 +3,18 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
 import { SearchResult } from "./SearchResult";
 import { useAtom } from "jotai";
-import { kanjiAtom } from "../atom/kanjiAtom";
+import { kanjiAtom, keywordAtom } from "../atom/kanjiAtom";
 
 interface Props {}
 
 export const InputForm = (props: Props) => {
+  const [keyword, setKeyword] = useAtom(keywordAtom);
   const [, resetKanji] = useAtom(kanjiAtom); //TODO
   const handleChange = (e: any) => {
     resetKanji("");
-    setInput(e.target.value);
+    setKeyword(e.target.value);
+    console.log(keyword);
   };
-
-  const [userInput, setInput] = useState<string>("りゅうしゅつ");
 
   return (
     <>
@@ -28,7 +28,7 @@ export const InputForm = (props: Props) => {
           fullWidth
           label="Search..."
           id="txtField"
-          value={userInput}
+          value={keyword}
           onChange={handleChange}
           InputProps={{
             endAdornment: (
@@ -38,9 +38,8 @@ export const InputForm = (props: Props) => {
             ),
           }}
         />
-        <Typography>{userInput}</Typography>
 
-        <SearchResult keyword={userInput} />
+        <SearchResult />
       </Box>
     </>
   );

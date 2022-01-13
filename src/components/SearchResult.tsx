@@ -2,33 +2,37 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { WordList } from "./IWord";
 import { WordBlock } from "./WordBlock";
-import { KanjiDisplay } from "./KanjiDisplay";
+import { keywordAtom } from "../atom/kanjiAtom";
+import { useAtom } from "jotai";
+import { Grid, Typography } from "@mui/material";
 
-interface Props {
-  keyword: string;
-}
+interface Props {}
 
 const populateList = (result: any) => {
   const words: WordList = Object.assign({}, result.data);
 
   const results = [];
-
   if (words[0]) {
     for (const i in words) {
       results.push(<WordBlock word={words[i]} />);
     }
   }
   return (
-    <div>
-      <p>Found: {result.data ? Object.keys(result.data).length : 0}</p>
+    <>
+      <Typography>
+        Found: {result.data ? Object.keys(result.data).length : 0}
+      </Typography>
       <pre>{results}</pre>
-    </div>
+    </>
   );
 };
 
-export const SearchResult = ({ keyword: word }: Props) => {
+export const SearchResult = (props: Props) => {
+  const [keyword] = useAtom(keywordAtom);
+
   const baseURL =
-    "https://jisho.org/api/v1/search/words?keyword=" + encodeURIComponent(word);
+    "https://jisho.org/api/v1/search/words?keyword=" +
+    encodeURIComponent(keyword);
   const proxyURL = "https://api.allorigins.win/raw?url=" + baseURL;
 
   const [result, setResult] = useState([]);
@@ -45,8 +49,7 @@ export const SearchResult = ({ keyword: word }: Props) => {
 
   return (
     <>
-      <KanjiDisplay />
-      <div>{populateList(result)}</div>
+      <Grid container>{populateList(result)}</Grid>
     </>
   );
 };
