@@ -23,14 +23,13 @@ const useStyles = makeStyles({
 export const KanjiBlock = ({ kanji }: Props) => {
   const classes = useStyles();
 
-  const baseURL = "https://kanjiapi.dev/v1/kanji/" + encodeURIComponent(kanji);
-  const proxyURL = "https://api.allorigins.win/raw?url=" + baseURL;
-
   const [_kanji, setKanji] = useState<Kanji>();
 
   useEffect(() => {
-    console.log("fetching " + kanji);
-    // console.log();
+    // console.log("fetching " + kanji);
+    const baseURL =
+      "https://kanjiapi.dev/v1/kanji/" + encodeURIComponent(kanji);
+    const proxyURL = "https://api.allorigins.win/raw?url=" + baseURL;
     axios
       .get(proxyURL)
       .then((response) => {
@@ -40,7 +39,8 @@ export const KanjiBlock = ({ kanji }: Props) => {
       .catch((error) => {
         console.log(error);
       });
-  }, [proxyURL]);
+  }, [kanji]);
+
   if (_kanji) {
     console.log(_kanji);
     return (

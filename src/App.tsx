@@ -82,28 +82,11 @@ function App() {
               </Box>
             </Grid>
 
-            <Grid item xs>
+            <Grid item xs wrap={"nowrap"}>
               <KanjiDisplay />
             </Grid>
           </Grid>
         </Box>
-
-        {/* test out */}
-        {/* <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            minHeight: "100vh",
-          }}
-        >
-          <CssBaseline />
-          <Container component="main" sx={{ mt: 8, mb: 2 }} maxWidth="sm">
-            <Typography variant="h2" component="h1" gutterBottom>
-              Welcome to Jisho
-            </Typography>
-            <InputForm />
-          </Container>
-        </Box> */}
       </QueryClientProvider>
     </>
   );

@@ -1,7 +1,5 @@
-import { Box, InputAdornment, TextField, Typography } from "@mui/material";
+import { Box, InputAdornment, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { useState } from "react";
-import { SearchResult } from "./SearchResult";
 import { useAtom } from "jotai";
 import { kanjiAtom, keywordAtom } from "../atom/kanjiAtom";
 
@@ -9,11 +7,10 @@ interface Props {}
 
 export const InputForm = (props: Props) => {
   const [keyword, setKeyword] = useAtom(keywordAtom);
-  const [, resetKanji] = useAtom(kanjiAtom); //TODO
+  const [, resetKanji] = useAtom(kanjiAtom);
   const handleChange = (e: any) => {
     resetKanji("");
     setKeyword(e.target.value);
-    console.log(keyword);
   };
 
   return (
