@@ -4,7 +4,7 @@ import { WordList } from "./IWord";
 import { WordBlock } from "./WordBlock";
 import { keywordAtom } from "../atom/kanjiAtom";
 import { useAtom } from "jotai";
-import { Grid, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 interface Props {}
 
@@ -29,14 +29,12 @@ const populateList = (result: any) => {
 
 export const SearchResult = (props: Props) => {
   const [keyword] = useAtom(keywordAtom);
-
-  const baseURL =
-    "https://jisho.org/api/v1/search/words?keyword=" +
-    encodeURIComponent(keyword);
-  const proxyURL = "https://api.allorigins.win/raw?url=" + baseURL;
-
   const [result, setResult] = useState([]);
   useEffect(() => {
+    const baseURL =
+      "https://jisho.org/api/v1/search/words?keyword=" +
+      encodeURIComponent(keyword);
+    const proxyURL = "https://api.allorigins.win/raw?url=" + baseURL;
     axios
       .get(proxyURL)
       .then((response) => {
@@ -45,11 +43,7 @@ export const SearchResult = (props: Props) => {
       .catch((error) => {
         console.log(error);
       });
-  }, [proxyURL]);
+  }, [keyword]);
 
-  return (
-    <>
-      <Grid container>{populateList(result)}</Grid>
-    </>
-  );
+  return <>{populateList(result)}</>;
 };

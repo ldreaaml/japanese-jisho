@@ -38,8 +38,6 @@ export const InputForm = (props: Props) => {
             ),
           }}
         />
-
-        <SearchResult />
       </Box>
     </>
   );

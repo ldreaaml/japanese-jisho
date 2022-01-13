@@ -12,8 +12,9 @@ interface Props {}
 
 const useStyles = makeStyles({
   root: {
-    width: 400,
-    // position: "fixed",
+    width: 350,
+    position: "fixed",
+    overflow: "scroll",
   },
 });
 
