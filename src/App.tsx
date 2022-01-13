@@ -35,12 +35,10 @@ function App() {
                 sx={{
                   display: "flex",
                   flexDirection: "column",
-                  // width: 500,
-                  // minHeight: "100vh",
                   justifyContent: "center",
                 }}
               >
-                <Item>main</Item>
+                {/* <Item>main</Item> */}
                 <CssBaseline />
                 <Container component="main" sx={{ mt: 8, mb: 2 }} maxWidth="sm">
                   <Typography
@@ -56,7 +54,7 @@ function App() {
               </Box>
             </Grid>
             <Grid item xs>
-              <Item>right</Item>
+              {/* <Item>right</Item> */}
             </Grid>
           </Grid>
         </Box>
