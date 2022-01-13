@@ -28,22 +28,31 @@ const populateList = (result: any) => {
 };
 
 export const SearchResult = (props: Props) => {
-  const [keyword] = useAtom(keywordAtom);
   const [result, setResult] = useState([]);
+  const [keyword] = useAtom(keywordAtom);
   useEffect(() => {
-    const baseURL =
-      "https://jisho.org/api/v1/search/words?keyword=" +
-      encodeURIComponent(keyword);
-    const proxyURL = "https://api.allorigins.win/raw?url=" + baseURL;
-    axios
-      .get(proxyURL)
-      .then((response) => {
-        setResult(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    fetchResult(keyword).then((data) => {
+      console.log("world");
+      setResult(data);
+    });
+    console.log("test");
   }, [keyword]);
 
   return <>{populateList(result)}</>;
 };
+
+function fetchResult(keyword: string) {
+  const baseURL =
+    "https://jisho.org/api/v1/search/words?keyword=" +
+    encodeURIComponent(keyword);
+  const proxyURL = "https://api.allorigins.win/raw?url=" + baseURL;
+  return axios
+    .get(proxyURL)
+    .then((response) => {
+      console.log("hello");
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}

@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     maxWidth: 350,
     position: "sticky",
     top: 30,
-    overflow: "scroll",
+    // overflow: "scroll",
   },
 });
 

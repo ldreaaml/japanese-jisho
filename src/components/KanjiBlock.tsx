@@ -20,6 +20,10 @@ const useStyles = makeStyles({
   },
 });
 
+interface KanjiResponse {
+  data: Kanji;
+}
+
 export const KanjiBlock = ({ kanji }: Props) => {
   const classes = useStyles();
 
@@ -32,8 +36,8 @@ export const KanjiBlock = ({ kanji }: Props) => {
     const proxyURL = "https://api.allorigins.win/raw?url=" + baseURL;
     axios
       .get(proxyURL)
-      .then((response) => {
-        const _kanji: Kanji = Object.assign({}, response.data);
+      .then((response: KanjiResponse) => {
+        const _kanji = response.data;
         setKanji(_kanji);
       })
       .catch((error) => {
