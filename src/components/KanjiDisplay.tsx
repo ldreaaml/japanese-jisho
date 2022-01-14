@@ -36,7 +36,6 @@ export const KanjiDisplay = (props: Props) => {
     <>
       <Grid container className={classes.root}>
         {kanji.map((k) => {
-          console.log(k);
           return <KanjiBlock kanji={k} />;
         })}
       </Grid>

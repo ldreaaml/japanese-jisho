@@ -46,8 +46,6 @@ export const WordBlock = ({ word }: Props) => {
         console.log("[" + word.senses[i].english_definitions[j] + "]");
     }
   };
-  //english
-  const eng = (list: string[]) => {};
 
   return (
     <>

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { WordList } from "./IWord";
 import { WordBlock } from "./WordBlock";
 import { keywordAtom } from "../atom/kanjiAtom";
 import { useAtom } from "jotai";
 import { Typography } from "@mui/material";
+import { fetchKeyword } from "./DictionaryApi";
 
 interface Props {}
 
@@ -28,31 +28,13 @@ const populateList = (result: any) => {
 };
 
 export const SearchResult = (props: Props) => {
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState<WordList>([]);
   const [keyword] = useAtom(keywordAtom);
   useEffect(() => {
-    fetchResult(keyword).then((data) => {
-      console.log("world");
+    fetchKeyword(keyword).then((data: WordList) => {
       setResult(data);
     });
-    console.log("test");
   }, [keyword]);
 
   return <>{populateList(result)}</>;
 };
-
-function fetchResult(keyword: string) {
-  const baseURL =
-    "https://jisho.org/api/v1/search/words?keyword=" +
-    encodeURIComponent(keyword);
-  const proxyURL = "https://api.allorigins.win/raw?url=" + baseURL;
-  return axios
-    .get(proxyURL)
-    .then((response) => {
-      console.log("hello");
-      return response.data;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}

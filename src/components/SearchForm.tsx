@@ -17,7 +17,7 @@ export const InputForm = (props: Props) => {
     <>
       <Box
         sx={{
-          width: 500,
+          width: 500  ,
           maxWidth: "100%",
         }}
       >

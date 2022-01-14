@@ -1,8 +1,8 @@
 import { Card, CardContent, Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Kanji } from "./IKanji";
+import { fetchKanji } from "./DictionaryApi";
 
 interface Props {
   kanji: string;
@@ -20,33 +20,17 @@ const useStyles = makeStyles({
   },
 });
 
-interface KanjiResponse {
-  data: Kanji;
-}
-
 export const KanjiBlock = ({ kanji }: Props) => {
   const classes = useStyles();
 
   const [_kanji, setKanji] = useState<Kanji>();
-
   useEffect(() => {
-    // console.log("fetching " + kanji);
-    const baseURL =
-      "https://kanjiapi.dev/v1/kanji/" + encodeURIComponent(kanji);
-    const proxyURL = "https://api.allorigins.win/raw?url=" + baseURL;
-    axios
-      .get(proxyURL)
-      .then((response: KanjiResponse) => {
-        const _kanji = response.data;
-        setKanji(_kanji);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [kanji]);
+    fetchKanji(kanji).then((data: Kanji) => {
+      setKanji(data);
+    });
+  }, [kanji, setKanji]);
 
   if (_kanji) {
-    console.log(_kanji);
     return (
       <>
         <Card className={classes.root} sx={{ minWidth: 275 }}>

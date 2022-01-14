@@ -8,7 +8,7 @@ import {
   styled,
   Typography,
 } from "@mui/material";
-import { InputForm } from "./components/InputForm";
+import { InputForm } from "./components/SearchForm";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { KanjiDisplay } from "./components/KanjiDisplay";
 import { SearchResult } from "./components/SearchResult";
