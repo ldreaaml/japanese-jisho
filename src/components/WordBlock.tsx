@@ -25,26 +25,21 @@ const useStyles = makeStyles({
   },
 });
 
-export const WordBlock = ({ word }: Props) => {
+export const WordBlock = ({ word: result }: Props) => {
   const classes = useStyles();
 
   const [, setCurrentWord] = useAtom(kanjiAtom);
+  console.log(result);
 
-  const slug = () => {
-    return word.slug;
+  const japanese = () => {
+    return result.japanese[0].word
+      ? result.japanese[0].word
+      : result.japanese[0].reading;
   };
 
   const mouseHover = () => {
-    console.log("mouseEnter " + slug());
-    setCurrentWord(slug());
-  };
-
-  //japanese
-  const jap = (list: string[]) => {
-    for (const i in word.senses) {
-      for (const j in word.senses[i].english_definitions)
-        console.log("[" + word.senses[i].english_definitions[j] + "]");
-    }
+    console.log("mouseEnter " + japanese());
+    setCurrentWord(japanese());
   };
 
   return (
@@ -56,16 +51,16 @@ export const WordBlock = ({ word }: Props) => {
       >
         <CardContent>
           <Typography variant="h5" component="div" onMouseOver={mouseHover}>
-            {slug()}
+            {japanese()}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            {word.japanese
+            {result.japanese
               .map((j) => j.reading)
               .filter((value, index, self) => self.indexOf(value) === index)
               .join("  •  ")}
           </Typography>
           <Typography className={classes.text} variant="body2">
-            {word.senses[0].english_definitions.join(", ")}
+            {result.senses[0].english_definitions.join(", ")}
           </Typography>
         </CardContent>
       </Card>
