@@ -27,9 +27,7 @@ const useStyles = makeStyles({
 
 export const WordBlock = ({ word: result }: Props) => {
   const classes = useStyles();
-
   const [, setCurrentWord] = useAtom(kanjiAtom);
-  console.log(result);
 
   const japanese = () => {
     return result.japanese[0].word
@@ -38,7 +36,6 @@ export const WordBlock = ({ word: result }: Props) => {
   };
 
   const mouseHover = () => {
-    console.log("mouseEnter " + japanese());
     setCurrentWord(japanese());
   };
 
