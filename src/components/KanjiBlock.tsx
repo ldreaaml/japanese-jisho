@@ -3,7 +3,8 @@ import { makeStyles } from "@mui/styles";
 import { useEffect, useState } from "react";
 import { Kanji } from "./IKanji";
 import { fetchKanji } from "./DictionaryApi";
-
+import StarIcon from "@mui/icons-material/Star";
+import StarOutlineIcon from "@mui/icons-material/StarOutline";
 interface Props {
   kanji: string;
 }
@@ -18,11 +19,15 @@ const useStyles = makeStyles({
     whiteSpace: "normal",
     marginBottom: 10,
   },
+  icon: {
+    opacity: 0.8,
+    cursor: "pointer",
+  },
 });
 
 export const KanjiBlock = ({ kanji }: Props) => {
   const classes = useStyles();
-
+  const isFavorite = true;
   const [_kanji, setKanji] = useState<Kanji>();
   useEffect(() => {
     fetchKanji(kanji).then((data: Kanji) => {
@@ -58,9 +63,28 @@ export const KanjiBlock = ({ kanji }: Props) => {
             <Typography sx={{ mb: 0.8 }} color="text.secondary">
               {_kanji.on_readings.join("  •  ")}
             </Typography>
-            <Typography variant="body2">
-              {_kanji.meanings.join(", ")}
-            </Typography>
+            <Grid container justifyContent="space-between">
+              <Typography
+                variant="body2"
+                display="inline"
+                sx={{ mb: 0 }}
+                component="div"
+              >
+                {_kanji.meanings.join(", ")}
+              </Typography>
+              <div
+                className={classes.icon}
+                onClick={() => {
+                  console.log("Save " + _kanji.kanji);
+                }}
+              >
+                {!isFavorite ? (
+                  <StarIcon style={{ fill: "#ffcb3b" }} />
+                ) : (
+                  <StarOutlineIcon style={{ fill: "#ffffff" }} />
+                )}
+              </div>
+            </Grid>
             {/* <Typography variant="body2">{JSON.stringify(result)}</Typography> */}
           </CardContent>
         </Card>
