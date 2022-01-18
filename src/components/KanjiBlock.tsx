@@ -1,4 +1,4 @@
-import { Card, CardContent, Grid, Typography } from "@mui/material";
+import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useEffect, useState } from "react";
 import { Kanji } from "./IKanji";
@@ -29,6 +29,9 @@ export const KanjiBlock = ({ kanji }: Props) => {
   const classes = useStyles();
   const isFavorite = true;
   const [_kanji, setKanji] = useState<Kanji>();
+  const saveKanji = (_kanji: Kanji) => {
+    console.log("Save " + _kanji.kanji);
+  };
   useEffect(() => {
     fetchKanji(kanji).then((data: Kanji) => {
       setKanji(data);
@@ -63,29 +66,31 @@ export const KanjiBlock = ({ kanji }: Props) => {
             <Typography sx={{ mb: 0.8 }} color="text.secondary">
               {_kanji.on_readings.join("  •  ")}
             </Typography>
-            <Grid container justifyContent="space-between">
-              <Typography
-                variant="body2"
-                display="inline"
-                sx={{ mb: 0 }}
-                component="div"
-              >
+
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "end",
+              }}
+            >
+              <Typography variant="body2" sx={{ flexGrow: 1, paddingRight: 3 }}>
                 {_kanji.meanings.join(", ")}
               </Typography>
               <div
                 className={classes.icon}
                 onClick={() => {
-                  console.log("Save " + _kanji.kanji);
+                  saveKanji(_kanji);
                 }}
               >
                 {!isFavorite ? (
-                  <StarIcon style={{ fill: "#ffcb3b" }} />
+                  <StarIcon style={{ fill: "#ffcb3b", display: "block" }} />
                 ) : (
-                  <StarOutlineIcon style={{ fill: "#ffffff" }} />
+                  <StarOutlineIcon
+                    style={{ fill: "#ffffff", display: "block" }}
+                  />
                 )}
               </div>
-            </Grid>
-            {/* <Typography variant="body2">{JSON.stringify(result)}</Typography> */}
+            </Box>
           </CardContent>
         </Card>
       </>
