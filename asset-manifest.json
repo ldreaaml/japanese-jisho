@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/japanese-jisho/static/css/main.073c9b0a.css",
+    "main.js": "/japanese-jisho/static/js/main.f5ee4d59.js",
+    "static/js/787.7d07d428.chunk.js": "/japanese-jisho/static/js/787.7d07d428.chunk.js",
+    "index.html": "/japanese-jisho/index.html",
+    "main.073c9b0a.css.map": "/japanese-jisho/static/css/main.073c9b0a.css.map",
+    "main.f5ee4d59.js.map": "/japanese-jisho/static/js/main.f5ee4d59.js.map",
+    "787.7d07d428.chunk.js.map": "/japanese-jisho/static/js/787.7d07d428.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.f5ee4d59.js"
+  ]
+}
