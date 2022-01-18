@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     marginBottom: 20,
     transition: "background 1s, color 1s",
     "&:hover": {
-      boxShadow: "2 3px 5px 2px #545454",
+      transform: "scale(1.05, 1.05)",
     },
   },
   text: {
