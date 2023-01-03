@@ -1,8 +1,14 @@
-# Getting Started with Create React App
+# Jisho - Japanese Dictionary
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A web dictionary that allows you to look up Japanese words and corresponding the kanji(chinese) characters.
 
-## Available Scripts
+💻 Demo [here](https://ldreaaml.github.io/japanese-jisho/)
+
+## Tools
+- React / TypeScript
+- Matarial-UI, Jotai, Atom, Axios
+
+## Getting Started
 
 In the project directory, you can run:
 
@@ -39,8 +45,3 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
